@@ -2,14 +2,17 @@ from flask import Flask, redirect, request, jsonify, session, url_for, render_te
 import urllib.parse
 import requests
 import datetime
+import os
 
 app = Flask(__name__)
 
-app.secret_key = 'inoinroieno_f43fnveoirmkveooe'
+CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
+REDIRECT_URI = os.getenv('REDIRECT_URI')
+SECRET_KEY = os.getenv('FLASK_SECRET_KEY')
 
-CLIENT_ID = '20ccab6278f345a797cac34e1607a633'
-CLIENT_SECRET = '460367b8786f4dffad4ad5e15040b335'
-REDIRECT_URI = 'http://localhost:5000/callback'
+app.secret_key = SECRET_KEY
+
 AUTH_URL = 'https://accounts.spotify.com/authorize'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
 API_BASE_URL = 'https://api.spotify.com/v1/'
