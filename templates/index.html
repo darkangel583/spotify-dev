@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- In your base.html or similar layout file -->
+    <nav class="navbar">
+        <a href="templates\index.html" class="navbar-brand">Spotify App</a>
+        <a href="templates\liked_songs.html" class="nav-link">Liked Songs</a>
+        <a href="templates\share_playlist.html" class="nav-link">Share Playlist</a>
+    </nav>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify App</title>
+    <title>Spotify Assistant</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>

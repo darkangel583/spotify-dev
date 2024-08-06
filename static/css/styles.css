@@ -53,3 +53,17 @@ li {
 .song-info {
     font-size: 18px;
 }
+/* In your styles.css */
+.navbar {
+    background-color: #000;
+    color: #1db954;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .nav-link {
+    color: #1db954;
+    text-decoration: none;
+    margin: 0 1rem;
+}
