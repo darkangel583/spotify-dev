@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Songs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Liked Songs</h1>
+        <ul>
+            {% for song in songs %}
+            <li>
+                <div class="song-info">
+                    <strong>{{ song.track.name }}</strong> by {{ song.track.artists[0].name }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('create_playlist') }}" class="button">Create Playlist</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Playlist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Playlist Created Successfully!</h1>
+        <p>Your playlist has been created. Share it with others using the link below:</p>
+        <a href="{{ playlist_url }}" target="_blank" class="button">{{ playlist_url }}</a>
+        <p><a href="{{ url_for('liked_songs') }}" class="button">Back to Liked Songs</a></p>
+    </div>
+</body>
+</html>
