@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Sync</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        var socket = io();
+
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+
+        socket.on('disconnect', function() {
+            console.log('Disconnected from server');
+        });
+
+        socket.on('sync_event', function(event) {
+            console.log('Sync event received:', event);
+            // Handle sync event (e.g., update playback state)
+        });
+
+        function joinRoom(room) {
+            socket.emit('join', { room: room });
+        }
+
+        function leaveRoom(room) {
+            socket.emit('leave', { room: room });
+        }
+
+        function sendSyncEvent(event) {
+            var room = 'sync_room';  // Example room name
+            socket.emit('sync_event', { room: room, event: event });
+        }
+    </script>
+</head>
+<body>
+    <h1>Music Sync</h1>
+    <button onclick="joinRoom('sync_room')">Join Sync Room</button>
+    <button onclick="leaveRoom('sync_room')">Leave Sync Room</button>
+    <button onclick="sendSyncEvent('play')">Play</button>
+    <button onclick="sendSyncEvent('pause')">Pause</button>
+</body>
+</html>

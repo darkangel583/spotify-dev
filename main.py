@@ -3,6 +3,10 @@ import urllib.parse
 import requests
 import datetime
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -66,27 +70,42 @@ def callback():
 def liked_songs():
     if 'access_token' not in session:
         return redirect(url_for('login'))
-    
+
     if datetime.datetime.now().timestamp() > session['expires_at']:
         return redirect(url_for('refresh_token'))
-    
+
     headers = {
         'Authorization': f"Bearer {session['access_token']}"
     }
 
     all_songs = []
-    limit = 50  # Maximum number of items per request
-    offset = 0  # Start from the beginning
+    limit = 50
+    offset = 0
 
     while True:
-        response = requests.get(API_BASE_URL + f'me/tracks?limit={limit}&offset={offset}', headers=headers)
-        data = response.json()
-        all_songs.extend(data['items'])
-        if len(data['items']) < limit:
+        try:
+            response = requests.get(API_BASE_URL + f'me/tracks?limit={limit}&offset={offset}', headers=headers)
+            response.raise_for_status()  # Raise an HTTPError for bad responses
+            data = response.json()
+        except requests.exceptions.HTTPError as http_err:
+            print(f"HTTP error occurred: {http_err}")
+            print(response.text)  # Log the response text
+            return jsonify({"error": "Failed to fetch liked songs"}), 500
+        except requests.exceptions.RequestException as req_err:
+            print(f"Request error occurred: {req_err}")
+            return jsonify({"error": "Request error occurred"}), 500
+        except requests.exceptions.JSONDecodeError:
+            print("Failed to decode JSON response")
+            print(response.text)  # Log the response text
+            return jsonify({"error": "Failed to decode JSON response"}), 500
+
+        all_songs.extend(data.get('items', []))
+        if len(data.get('items', [])) < limit:
             break
         offset += limit
 
     return render_template('liked_songs.html', songs=all_songs)
+
 
 
 @app.route('/refresh-token')
@@ -197,4 +216,4 @@ def share_playlist(playlist_id):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)

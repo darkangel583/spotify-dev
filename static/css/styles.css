@@ -1,69 +1,273 @@
-/* General styling for the whole page */
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    color: #ffffff;
-    background-color: #191414; /* Dark background similar to Spotify */
     margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #000000, #1db954); /* Start dark and end with Spotify green */
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    text-align: center;
+}
+
+/* Container Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding and border in height calculations */
+}
+
+
+/* Header and Main Content */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Login Button */
+.login-button {
+    background-color: #1db954;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.login-button:hover {
+    background-color: #1ed760;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .login-button {
+        padding: 12px 25px;
+        font-size: 18px;
+    }
+}
+
+/* Liked Songs and Playlists */
+.songs-list, .playlists-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.song, .playlist {
+    display: flex;
+    align-items: center;
+    background-color: #1c1c1c;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.song-cover, .playlist-cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.song-details, .playlist-details {
+    flex-grow: 1;
+}
+
+/* Action Buttons */
+.share-button, .sync-button {
+    background-color: #1db954;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.share-button:hover, .sync-button:hover {
+    background-color: #1ed760;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f8f9fa; /* Light background color */
+    border-top: 1px solid #dee2e6; /* Subtle border */
+}
+
+.footer p {
+    font-weight: bold;
+}
+
+.footer ul {
+    list-style: none;
     padding: 0;
 }
 
-/* Container for centering content */
+.footer li {
+    margin: 0.5rem 0;
+}
+
+.footer a {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+/* Contact section */
+.footer {
+    background-color: #000000; /* Black background */
+    color: #ffffff;           /* White text */
+    padding: 2rem;
+    text-align: left;
+    border-top: 1px solid #333333; /* Darker border for subtle separation */
+}
+
+.footer p {
+    font-weight: bold;
+    margin: 0;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer li {
+    margin: 0.5rem 0;
+}
+
+.footer a {
+    color: #ffffff; /* White links */
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #fff;
+}
+
 .container {
-    width: 90%;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Header styling */
 h1 {
-    color: #1db954; /* Spotify green */
-    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
-/* Button styling */
+/* Songs List Styles */
+.songs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Songs Grid */
+.songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.song-card {
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.song-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.song-cover {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #333;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+}
+
+.song-details {
+    padding: 15px;
+    text-align: left;
+}
+
+.song-title {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.song-artist {
+    font-size: 1rem;
+    color: #b3b3b3;
+}
+
+/* Button Styles */
 .button {
     display: inline-block;
-    padding: 10px 20px;
-    margin: 10px 0;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #1db954; /* Spotify green */
+    background-color: #1db954;
+    color: #fff;
+    padding: 15px 30px;
     border: none;
-    border-radius: 5px;
-    text-align: center;
+    border-radius: 25px;
     text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+    text-align: center;
 }
 
 .button:hover {
-    background-color: #1ed760; /* Lighter green for hover effect */
+    background-color: #1ed760;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* List styling for liked songs */
-ul {
-    list-style-type: none;
-    padding: 0;
+.liked-songs-page {
+    background: url('../images/sd-bg9.jpg') no-repeat center center fixed;
+    background-size: cover; /* Ensures image covers the viewport */
+    height: 100vh; /* Ensures it covers the full viewport height */
+    margin: 0; /* Removes default margin */
+    background-attachment: fixed; /* Keeps the image fixed in place */
 }
 
-li {
-    padding: 10px;
-    border-bottom: 1px solid #333;
-}
 
-.song-info {
-    font-size: 18px;
-}
-/* In your styles.css */
-.navbar {
-    background-color: #000;
-    color: #1db954;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.navbar .nav-link {
-    color: #1db954;
-    text-decoration: none;
-    margin: 0 1rem;
+
+
+@media (max-width: 768px) {
+    .song-card {
+        margin: 10px 0;
+    }
 }

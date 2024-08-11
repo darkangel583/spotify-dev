@@ -3,21 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liked Songs</title>
+    <title>Your Liked Songs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-<body>
+<body class="liked-songs-page">
     <div class="container">
         <h1>Your Liked Songs</h1>
-        <ul>
-            {% for song in songs %}
-            <li>
-                <div class="song-info">
-                    <strong>{{ song.track.name }}</strong> by {{ song.track.artists[0].name }}
+        {% if songs %}
+            <div class="songs-grid">
+                {% for song in songs %}
+                {% if song.track and song.track.album and song.track.album.images %}
+                <div class="song-card">
+                    <img src="{{ song.track.album.images[0].url }}" alt="{{ song.track.name }} cover" class="song-cover">
+                    <div class="song-details">
+                        <strong class="song-title">{{ song.track.name }}</strong>
+                        <span class="song-artist">{{ song.track.artists[0].name }}</span>
+                    </div>
                 </div>
-            </li>
-            {% endfor %}
-        </ul>
+                {% else %}
+                <div class="song-card">
+                    <div class="song-details">
+                        <strong class="song-title">Unknown Song</strong>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No liked songs found. Please add some songs to your library.</p>
+        {% endif %}
         <a href="{{ url_for('create_playlist') }}" class="button">Create Playlist</a>
     </div>
 </body>
