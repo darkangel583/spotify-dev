@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- In your base.html or similar layout file -->
-    <nav class="navbar">
-        <a href="templates\index.html" class="navbar-brand">Spotify App</a>
-        <a href="templates\liked_songs.html" class="nav-link">Liked Songs</a>
-        <a href="templates\share_playlist.html" class="nav-link">Share Playlist</a>
-    </nav>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Assistant</title>
@@ -17,7 +10,16 @@
     <div class="container">
         <h1>Welcome to My Spotify Assistant</h1>
         <p>Log in to view and share your liked songs.</p>
-        <a href="{{ url_for('login') }}" class="button">Login with Spotify</a>
+        <a href="{{ url_for('login') }}" class="login-button">Login with Spotify</a> <!-- Ensure class is correct -->
     </div>
+
+    <footer class="footer">
+        <p>Contact me:</p>
+        <ul>
+            <li><a href="mailto:shashaankvinoth@gmail.com">Email: shashaankvinoth@gmail.com</a></li>
+            <li><a href="https://github.com/darkangel583/spotify-dev" target="_blank">GitHub: darkangel583/spotify-dev</a></li>
+        </ul>
+    </footer>
+    
 </body>
 </html>
