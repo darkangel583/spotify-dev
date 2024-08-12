@@ -3,10 +3,6 @@ import urllib.parse
 import requests
 import datetime
 import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
 
 app = Flask(__name__)
 
